@@ -35,7 +35,7 @@ namespace CursoPuntoVenta.Repositorio
             {
                 new Producto{ id=1, Nombre="PAPITAS ADOBADAS", Existencia=10, id_proveedor=1, id_Sucursal= 1, precio=15.50M, Unidad="PZA" },
                 new Producto{ id=2, Nombre="COCACOLA 600ML", Existencia=10, id_proveedor=2, id_Sucursal= 1, precio=16, Unidad="PZA" },
-                new Producto{ id=3, Nombre="PECHUCA DE POLLO", Existencia=10, id_proveedor=3, id_Sucursal= 1, precio=40, Unidad="KG" }
+                new Producto{ id=3, Nombre="PECHUGA DE POLLO", Existencia=10, id_proveedor=3, id_Sucursal= 1, precio=40, Unidad="KG" }
             };
         }
         public static List<Cliente> GetClientes()

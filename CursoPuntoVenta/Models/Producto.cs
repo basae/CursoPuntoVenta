@@ -10,7 +10,7 @@ namespace CursoPuntoVenta.Models
         public int? id { get; set; }
         public string Nombre { get; set; }
         public string Unidad { get; set; }
-        public decimal precio { get; set; }
+        public decimal Precio { get; set; }
         public decimal Existencia { get; set; }
         public int? id_Sucursal { get; set; }
         public int? id_proveedor { get; set; }

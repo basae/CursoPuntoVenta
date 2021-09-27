@@ -1,4 +1,5 @@
 ﻿using CursoPuntoVenta.Models;
+using CursoPuntoVenta.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,6 +21,13 @@ namespace CursoPuntoVenta.Controllers
 
         public IActionResult Index()
         {
+            Venta temp= new Venta();
+            temp.id_cliente = DataRepositorio.GetClientes().FirstOrDefault().Id.Value;
+            temp.Id_empleado = DataRepositorio.getEmpleados().FirstOrDefault().Id.Value;
+            temp.AggregarProducto(new Venta.ListaVenta { Producto = DataRepositorio.GetProductos().FirstOrDefault(), cantidad = 5 });
+
+            temp.QuitarProducto(1, 1);
+
             return View();
         }
 
