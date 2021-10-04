@@ -21,12 +21,12 @@ namespace CursoPuntoVenta.Controllers
 
         public IActionResult Index()
         {
-            Venta temp= new Venta();
-            temp.id_cliente = DataRepositorio.Cliente.Id.Value;
-            temp.Id_empleado = DataRepositorio.Empleados.FirstOrDefault().Id.Value;
-            temp.AggregarProducto(new Venta.ListaVenta { Producto = DataRepositorio.Productos.FirstOrDefault(), cantidad = 5 });
-
-            temp.QuitarProducto(1, 1);
+            //Venta temp= new Venta();
+            //temp.id_cliente = DataRepositorio.Cliente.Id.Value;
+            //temp.Id_empleado = DataRepositorio.Empleados.FirstOrDefault().Id.Value;
+            //temp.AggregarProducto(new Venta.ListaVenta { Producto = DataRepositorio.Productos.FirstOrDefault(), cantidad = 5 });
+            //temp.AggregarProducto(new Venta.ListaVenta { Producto = DataRepositorio.Productos.LastOrDefault(), cantidad = 5 });
+            //temp.QuitarProducto(1);
 
             return View();
         }

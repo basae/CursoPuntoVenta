@@ -1,0 +1,22 @@
+﻿@model CursoPuntoVenta.Models.Venta
+<h1>Venta</h1>
+<hr />
+<div class="row">
+    <div class="col-10">
+        <form asp-action="Index" method="post">
+            <div class="form-group">
+                <label>Folio</label>
+                <div class="col-3">
+                    <input type="number" asp-for="Id" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Empleado</label>
+                <select asp-for="Id_empleado" class="form-control">
+                    <option>selecciona un empleado</option>
+                    <option>Chuleta</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
