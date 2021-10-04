@@ -22,9 +22,9 @@ namespace CursoPuntoVenta.Controllers
         public IActionResult Index()
         {
             Venta temp= new Venta();
-            temp.id_cliente = DataRepositorio.GetClientes().FirstOrDefault().Id.Value;
-            temp.Id_empleado = DataRepositorio.getEmpleados().FirstOrDefault().Id.Value;
-            temp.AggregarProducto(new Venta.ListaVenta { Producto = DataRepositorio.GetProductos().FirstOrDefault(), cantidad = 5 });
+            temp.id_cliente = DataRepositorio.Cliente.Id.Value;
+            temp.Id_empleado = DataRepositorio.Empleados.FirstOrDefault().Id.Value;
+            temp.AggregarProducto(new Venta.ListaVenta { Producto = DataRepositorio.Productos.FirstOrDefault(), cantidad = 5 });
 
             temp.QuitarProducto(1, 1);
 

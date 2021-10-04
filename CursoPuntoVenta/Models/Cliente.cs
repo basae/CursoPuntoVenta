@@ -7,6 +7,6 @@ namespace CursoPuntoVenta.Models
 {
     public class Cliente:Persona
     {        
-        public int Puntos { get; set; }        
+        public int Puntos { get; set; }
     }
 }
