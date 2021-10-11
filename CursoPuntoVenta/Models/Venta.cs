@@ -12,7 +12,7 @@ namespace CursoPuntoVenta.Models
         public int? Id { get; set; }
         [Required(ErrorMessage ="El campo empleado debe estar lleno")]
         public int? Id_empleado { get; set; }
-        [Display(Name ="Fecha de Venta")]
+        [Display(Name ="Fecha de Venta XD")]
         public DateTime FechaVenta { get; set; }
         [Display(Name ="SubTotal")]
         public decimal Subtotal { get; set; }

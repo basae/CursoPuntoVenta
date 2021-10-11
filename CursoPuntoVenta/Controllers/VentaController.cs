@@ -12,8 +12,11 @@ namespace CursoPuntoVenta.Controllers
     public class VentaController : Controller
     {
         public IActionResult Index()
-        {
+        {            
             ViewData["Empleados"] = DataRepositorio.Empleados.Select(x=> new SelectListItem { Text= string.Join(" ", x.Nombre,x.Apellidos), Value= x.Id.ToString() });
+            ViewData["Cliente_Nombre"] = DataRepositorio.Cliente.Nombre;
+            ViewData["Cliente_Id"] = DataRepositorio.Cliente.Id;
+            ViewData["Productos"] = DataRepositorio.Productos;
             return View();
         }
         [HttpPost]

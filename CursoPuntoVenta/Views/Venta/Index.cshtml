@@ -3,11 +3,11 @@
 <hr />
 <div class="row">
     <div class="col-10">
-        <form asp-action="Index" method="post">
+        <form asp-action="Index" method="post" id="form1">
             @Html.ValidationSummary(false)
             <div class="form-group">
-                <label>Folio</label>                
-                    <input type="number" asp-for="Id" class="form-control col-1" />                
+                <label>Folio</label>
+                <input type="number" asp-for="Id" class="form-control col-1" />
             </div>
             <div class="form-group">
                 <label asp-for="FechaVenta"></label>
@@ -15,27 +15,69 @@
             </div>
             <div class="form-group">
                 <label>Empleado</label>
-                <select asp-for="Id_empleado" asp-items="@((IEnumerable<SelectListItem>)ViewData["Empleados"])" class="form-control col-5">   
-                    <option value="" >Selecciona un empleado</option>
+                <select asp-for="Id_empleado" asp-items="@((IEnumerable<SelectListItem>)ViewData["Empleados"])" class="form-control col-5">
+                    <option value="">Selecciona un empleado</option>
                 </select>
             </div>
-            <table>
+            <input type="hidden" asp-for="id_cliente" value="@(ViewData["Cliente_Id"])" />
+            <div class="form-group">
+                <label>Cliente</label>
+                <input type="text" class="form-control col-5" readonly="readonly" value="@(ViewData["Cliente_Nombre"])"/>
+            </div>
+
+            <table class="table table-bordered">
                 <thead>
-                <tr>
-                    <th class="hide"></th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
-                </tr>
-                    </thead>
+                    <tr>                        
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    
+                    <tr>
+                        <td>
+                            <select class="form-control Nombre">
+                                <option value="">Selecciona un producto</option>
+                                @foreach (var producto in (List<Producto>)ViewData["Productos"])
+                                {
+                                    <option value="@producto.id" data-precio="@producto.Precio">@(string.Format("{0}[{1:C}]",producto.Nombre,producto.Precio))</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control cantidad" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control subtotal" disabled="disabled" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select class="form-control Nombre">
+                                <option value="">Selecciona un producto</option>
+                                @foreach (var producto in (List<Producto>)ViewData["Productos"])
+                                {
+                                    <option value="@producto.id" data-precio="@producto.Precio">@(string.Format("{0}[{1:C}]",producto.Nombre,producto.Precio))</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control cantidad" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control subtotal" disabled="disabled" />
+                        </td>
+                    </tr>
                 </tbody>
-                
+
             </table>
 
-            <button type="submit">Terminar venta</button>
+            <button type="submit" id="btn_terminar_venta">Terminar venta</button>
 
         </form>
     </div>
 </div>
+@section Scripts
+{
+    <script src="~/js/venta_scripts.js"></script>
+}
