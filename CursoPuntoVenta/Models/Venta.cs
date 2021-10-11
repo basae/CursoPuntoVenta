@@ -1,6 +1,7 @@
 ﻿using CursoPuntoVenta.Repositorio;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,14 +10,23 @@ namespace CursoPuntoVenta.Models
     public class Venta
     {
         public int? Id { get; set; }
-        public int Id_empleado { get; set; }
+        [Required(ErrorMessage ="El campo empleado debe estar lleno")]
+        public int? Id_empleado { get; set; }
+        [Display(Name ="Fecha de Venta")]
         public DateTime FechaVenta { get; set; }
+        [Display(Name ="SubTotal")]
         public decimal Subtotal { get; set; }
+        [Display(Name = "Descuento")]
         public decimal Descuento { get; set; }
+        [Display(Name = "IVA")]
         public decimal IVA { get; set; }
+        [Display(Name = "Total")]
         public decimal Total { get; set; }
-        public int id_cliente { get; set; }
-        public int PuntosGenerados { get; set; }
+        [Display(Name = "Cliente")]
+        [Required(ErrorMessage ="El campo cliente debe tener algún valor")]
+        public int? id_cliente { get; set; }
+        [Display(Name = "Puntos")]        
+        public int? PuntosGenerados { get; set; }
         public List<ListaVenta> Productos { get; set; }
         public Venta()
         {

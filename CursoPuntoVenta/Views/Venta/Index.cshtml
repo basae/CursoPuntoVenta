@@ -4,19 +4,38 @@
 <div class="row">
     <div class="col-10">
         <form asp-action="Index" method="post">
+            @Html.ValidationSummary(false)
             <div class="form-group">
-                <label>Folio</label>
-                <div class="col-3">
-                    <input type="number" asp-for="Id" class="form-control" />
-                </div>
+                <label>Folio</label>                
+                    <input type="number" asp-for="Id" class="form-control col-1" />                
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaVenta"></label>
+                <input type="date" asp-for="FechaVenta" class="form-control col-3" />
             </div>
             <div class="form-group">
                 <label>Empleado</label>
-                <select asp-for="Id_empleado" class="form-control">
-                    <option>selecciona un empleado</option>
-                    <option>Chuleta</option>
+                <select asp-for="Id_empleado" asp-items="@((IEnumerable<SelectListItem>)ViewData["Empleados"])" class="form-control col-5">   
+                    <option value="" >Selecciona un empleado</option>
                 </select>
             </div>
+            <table>
+                <thead>
+                <tr>
+                    <th class="hide"></th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+                    </thead>
+                <tbody>
+                    
+                </tbody>
+                
+            </table>
+
+            <button type="submit">Terminar venta</button>
+
         </form>
     </div>
 </div>
