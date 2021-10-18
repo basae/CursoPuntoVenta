@@ -43,6 +43,7 @@ namespace CursoPuntoVenta.Models
         {
             if (DataRepositorio.BuscaProducto(producto.Producto.id.Value).Existencia >= producto.cantidad)
             {
+                producto.Producto.Precio = DataRepositorio.BuscaProducto(producto.Producto.id.Value).Precio;
                 Productos.Add(producto);
                 DataRepositorio.MoverExistencia(producto.Producto.id.Value, producto.cantidad);
                 Recalcular();         

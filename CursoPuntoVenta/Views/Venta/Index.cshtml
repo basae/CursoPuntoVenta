@@ -1,6 +1,8 @@
-﻿@model CursoPuntoVenta.Models.Venta
+﻿@using Newtonsoft.Json
+@model CursoPuntoVenta.Models.Venta
 <h1>Venta</h1>
 <hr />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
 <div class="row">
     <div class="col-10">
         <form asp-action="Index" method="post" id="form1">
@@ -22,52 +24,22 @@
             <input type="hidden" asp-for="id_cliente" value="@(ViewData["Cliente_Id"])" />
             <div class="form-group">
                 <label>Cliente</label>
-                <input type="text" class="form-control col-5" readonly="readonly" value="@(ViewData["Cliente_Nombre"])"/>
+                <input type="text" class="form-control col-5" readonly="readonly" value="@(ViewData["Cliente_Nombre"])" />
+            </div>
+            <br />
+            <div class="text-right">
+                <button type="button" class="btn" id="btn_agregar_producto"><i class="bi bi-cart-plus" style="font-size:40px;"></i></button>
             </div>
 
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="tbl_lista_productos">
                 <thead>
-                    <tr>                        
+                    <tr>
                         <th>Producto</th>
                         <th>Cantidad</th>
                         <th>Subtotal</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <select class="form-control Nombre">
-                                <option value="">Selecciona un producto</option>
-                                @foreach (var producto in (List<Producto>)ViewData["Productos"])
-                                {
-                                    <option value="@producto.id" data-precio="@producto.Precio">@(string.Format("{0}[{1:C}]",producto.Nombre,producto.Precio))</option>
-                                }
-                            </select>
-                        </td>
-                        <td>
-                            <input type="number" class="form-control cantidad" />
-                        </td>
-                        <td>
-                            <input type="number" class="form-control subtotal" disabled="disabled" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select class="form-control Nombre">
-                                <option value="">Selecciona un producto</option>
-                                @foreach (var producto in (List<Producto>)ViewData["Productos"])
-                                {
-                                    <option value="@producto.id" data-precio="@producto.Precio">@(string.Format("{0}[{1:C}]",producto.Nombre,producto.Precio))</option>
-                                }
-                            </select>
-                        </td>
-                        <td>
-                            <input type="number" class="form-control cantidad" />
-                        </td>
-                        <td>
-                            <input type="number" class="form-control subtotal" disabled="disabled" />
-                        </td>
-                    </tr>
+                <tbody>                    
                 </tbody>
 
             </table>
@@ -80,4 +52,7 @@
 @section Scripts
 {
     <script src="~/js/venta_scripts.js"></script>
+    <script>
+        var ProductosJson = @(Html.Raw(JsonConvert.SerializeObject(ViewData["Productos"])))
+    </script>
 }
