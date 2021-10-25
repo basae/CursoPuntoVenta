@@ -85,7 +85,7 @@ namespace CursoPuntoVenta.Models
         {
             Productos = Productos.Select(x =>
             {
-                x.subtotal = x.Producto.Precio * x.cantidad;
+                x.subtotal = DataRepositorio.BuscaProducto(x.Producto.id.Value).Precio * x.cantidad;
                 return x;
             }).ToList();
             Subtotal = Productos.Sum(x => x.subtotal);

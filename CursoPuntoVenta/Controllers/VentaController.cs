@@ -14,12 +14,12 @@ namespace CursoPuntoVenta.Controllers
     public class VentaController : Controller
     {
         public IActionResult Index()
-        {            
-            ViewData["Empleados"] = DataRepositorio.Empleados.Select(x=> new SelectListItem { Text= string.Join(" ", x.Nombre,x.Apellidos), Value= x.Id.ToString() });
+        {
+            ViewData["Empleados"] = DataRepositorio.Empleados.Select(x => new SelectListItem { Text = string.Join(" ", x.Nombre, x.Apellidos), Value = x.Id.ToString() });
             ViewData["Cliente_Nombre"] = DataRepositorio.Cliente.Nombre;
             ViewData["Cliente_Id"] = DataRepositorio.Cliente.Id;
             ViewData["Productos"] = DataRepositorio.Productos;
-            
+
             return View();
         }
         [HttpPost]
@@ -29,17 +29,32 @@ namespace CursoPuntoVenta.Controllers
         }
 
         [HttpPost]
-        public IActionResult AgregaProducto([FromBody] ListaVenta producto)
-        {
-            Venta venta = new Venta();
+        public IActionResult AgregaProducto([FromBody]Venta _venta,[FromQuery]int id_producto, [FromQuery] int cantidad, int cantidadAntesCambio)
+        {            
             try
             {
-                venta.AggregarProducto(producto);
-                return Json(new { Result = venta,Error = false, Message = "" });
+                if (cantidadAntesCambio > 0)
+                    _venta.QuitarProducto(id_producto, cantidadAntesCambio);
+
+                _venta.AggregarProducto(new ListaVenta { Producto=new Producto { id = id_producto },cantidad=cantidad });
+                return Json(new { Result = _venta, Error = false, Message = "" });
             }
             catch(Exception ex)
             {
-                return Json(new { Result= venta, Error = true, Message = ex.Message });
+                return Json(new { Result= _venta, Error = true, Message = ex.Message });
+            }
+        }
+        [HttpPost]
+        public IActionResult QuitarProducto([FromBody] Venta _venta, [FromQuery] int id_producto)
+        {
+            try
+            {                
+                _venta.QuitarProducto(id_producto);
+                return Json(new { Result = _venta, Error = false, Message = "" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = _venta, Error = true, Message = ex.Message });
             }
         }
     }

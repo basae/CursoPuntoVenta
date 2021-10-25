@@ -39,11 +39,24 @@
                         <th>Subtotal</th>
                     </tr>
                 </thead>
-                <tbody>                    
+                <tbody>
                 </tbody>
 
             </table>
 
+            <br />
+            <div class="form-group">
+                <label asp-for="Subtotal"></label>
+                <input type="number" asp-for="Subtotal" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="IVA"></label>
+                <input type="number" asp-for="IVA" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Total"></label>
+                <input type="number" asp-for="Total" class="form-control" readonly />
+            </div>
             <button type="submit" id="btn_terminar_venta">Terminar venta</button>
 
         </form>
